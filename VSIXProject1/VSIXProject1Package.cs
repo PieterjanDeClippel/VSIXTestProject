@@ -27,6 +27,8 @@ namespace VSIXProject1
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideToolWindow(typeof(MyToolWindow))]
     [Guid(VSIXProject1Package.PackageGuidString)]
     public sealed class VSIXProject1Package : AsyncPackage
     {
@@ -56,6 +58,8 @@ namespace VSIXProject1
             outputPane.Activate();
             outputPane.OutputString("Hello world\n");
 
+            await MyToolWindowCommand.InitializeAsync(this);
+
             JoinableTaskFactory.RunAsync(async () =>
             {
                 while (true)
@@ -64,7 +68,7 @@ namespace VSIXProject1
                     await JoinableTaskFactory.SwitchToMainThreadAsync();
                     outputPane.OutputString($"Tick at {DateTime.Now:HH:mm:ss}\n");
                 }
-            }).JoinAsync(cancellationToken).ContinueWith(_ => { });
+            }).JoinAsync(cancellationToken);
         }
 
         #endregion

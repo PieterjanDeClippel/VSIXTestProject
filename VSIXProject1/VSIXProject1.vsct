@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+
+  <Commands package="guidVSIXProject1Package">
+    <Groups>
+      <Group guid="guidVSIXProject1CmdSet" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_VIEW" />
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidVSIXProject1CmdSet" id="MyToolWindowCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidVSIXProject1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <ButtonText>My Tool Window</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidVSIXProject1Package" value="{a4ff503a-1706-4419-a160-8b3cc9c20d21}" />
+    <GuidSymbol name="guidVSIXProject1CmdSet" value="{e7a1b2c3-d4e5-f678-9012-abcdef345678}">
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="MyToolWindowCommandId" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
